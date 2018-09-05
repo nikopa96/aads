@@ -12,8 +12,11 @@ public class AL01B {
      * @return The time estimate or exact time in YEARS.
      */
     public String timeToComputeRecursiveFibonacci(int n) {
-        BigInteger fibonacciNumber = recursiveF(n);
-        return String.valueOf(0.123);
+        BigInteger fibonacciNumber = iterativeF(n);
+        BigInteger rows = fibonacciNumber.multiply(new BigInteger("3")).subtract(new BigInteger("2"));
+        double time = Integer.parseInt(rows.toString()) * 0.002 / Integer.parseInt(SECONDS_IN_YEAR);
+
+        return String.valueOf(time);
     }
 
     /**
@@ -26,5 +29,30 @@ public class AL01B {
         if (n <= 1)
             return BigInteger.valueOf(n);
         return recursiveF(n - 1).add(recursiveF(n - 2));
+    }
+
+    /**
+     * Compute the Fibonacci sequence number.
+     * @param n The number of the sequence to compute.
+     * @return The n-th number in Fibonacci series.
+     */
+    public BigInteger iterativeF(int n) {
+        BigInteger fib1;
+        if (n > 0) {
+            fib1 = new BigInteger("1");
+        } else {
+            fib1 = new BigInteger("0");
+        }
+
+        BigInteger fib2 = new BigInteger("1");
+        BigInteger fib3;
+
+        for (int i = 2; i <= n; i++) {
+            fib3 = fib1.add(fib2);
+            fib1 = fib2;
+            fib2 = fib3;
+        }
+
+        return fib1;
     }
 }
