@@ -1,10 +1,12 @@
 package ee.ttu.algoritmid.fibonacci;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 
 public class AL01B {
 
-    private static final String SECONDS_IN_YEAR = "31536000";
+    private static final double SECONDS_IN_YEAR = 31536000;
 
     /**
      * Estimate or find the exact time required to compute the n-th Fibonacci number.
@@ -14,7 +16,7 @@ public class AL01B {
     public String timeToComputeRecursiveFibonacci(int n) {
         BigInteger fibonacciNumber = iterativeF(n);
         BigInteger rows = fibonacciNumber.multiply(new BigInteger("3")).subtract(new BigInteger("2"));
-        double time = Integer.parseInt(rows.toString()) * 0.002 / Integer.parseInt(SECONDS_IN_YEAR);
+        BigDecimal time = (new BigDecimal(rows)).multiply(BigDecimal.valueOf(0.00014)).divide(BigDecimal.valueOf(SECONDS_IN_YEAR), 10, RoundingMode.HALF_UP);
 
         return String.valueOf(time);
     }
