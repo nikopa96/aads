@@ -16,7 +16,7 @@ public class AL01B {
         BigInteger fibonacciNumber = recursiveF(n);
 
         BigInteger rows = fibonacciNumber.multiply(new BigInteger("3")).subtract(new BigInteger("2"));
-        BigDecimal time = (new BigDecimal(String.valueOf(rows))).multiply(new BigDecimal("0.000141375552765256"))
+        BigDecimal time = (new BigDecimal(String.valueOf(rows))).multiply(new BigDecimal("0.002"))
                 .divide(new BigDecimal(SECONDS_IN_YEAR), 6);
 
         return String.valueOf(time);
