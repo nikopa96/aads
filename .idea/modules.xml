@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AL01A/AL01A.iml" filepath="$PROJECT_DIR$/AL01A/AL01A.iml" />
+      <module fileurl="file://$PROJECT_DIR$/iti0204-iti0050.iml" filepath="$PROJECT_DIR$/iti0204-iti0050.iml" />
+    </modules>
+  </component>
+</project>
