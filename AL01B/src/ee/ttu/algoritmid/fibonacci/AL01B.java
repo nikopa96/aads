@@ -12,9 +12,7 @@ public class AL01B {
      * @return The time estimate or exact time in YEARS.
      */
     public String timeToComputeRecursiveFibonacci(int n) {
-        BigInteger fibonacciNumber = recursiveF(n);
-
-        BigInteger rows = fibonacciNumber.multiply(new BigInteger("3")).subtract(new BigInteger("2"));
+        BigInteger rows = recursiveF(n).multiply(new BigInteger("3")).subtract(new BigInteger("2"));
 
         return String.valueOf(0.123);
     }
