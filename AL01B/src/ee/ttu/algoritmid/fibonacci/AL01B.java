@@ -1,6 +1,5 @@
 package ee.ttu.algoritmid.fibonacci;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 public class AL01B {
@@ -16,8 +15,7 @@ public class AL01B {
         BigInteger fibonacciNumber = recursiveF(n);
 
         BigInteger rows = fibonacciNumber.multiply(new BigInteger("3")).subtract(new BigInteger("2"));
-        BigDecimal time = (new BigDecimal(String.valueOf(rows))).multiply(new BigDecimal("0.002"))
-                .divide(new BigDecimal(SECONDS_IN_YEAR), 6);
+        double time = Long.parseLong(rows.toString()) * 0.002 / Integer.parseInt(SECONDS_IN_YEAR);
 
         return String.valueOf(time);
     }
