@@ -13,8 +13,6 @@ public class AL01B {
      */
     public String timeToComputeRecursiveFibonacci(int n) {
         BigInteger fibonacciNumber = recursiveF(n);
-        BigInteger rows = fibonacciNumber.multiply(BigInteger.valueOf(3)).subtract(BigInteger.valueOf(2));
-
         return String.valueOf(0.123);
     }
 
