@@ -16,7 +16,8 @@ public class AL01B {
     public String timeToComputeRecursiveFibonacci(int n) {
         BigInteger fibonacciNumber = iterativeF(n);
         BigInteger rows = fibonacciNumber.multiply(new BigInteger("3")).subtract(new BigInteger("2"));
-        BigDecimal time = (new BigDecimal(rows)).multiply(BigDecimal.valueOf(0.00000014)).divide(BigDecimal.valueOf(SECONDS_IN_YEAR), 10, RoundingMode.HALF_UP);
+        BigDecimal time = (new BigDecimal(rows)).multiply(BigDecimal.valueOf(0.00000014))
+                .divide(BigDecimal.valueOf(SECONDS_IN_YEAR), 10, RoundingMode.HALF_UP);
 
         return String.valueOf(time);
     }
