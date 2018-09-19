@@ -33,13 +33,17 @@ public class GuessingGame {
         int highestIndex = sortedFruitArray.length;
         int mediumIndex = (lowestIndex + highestIndex) / 2;
 
-        while (!oracle.isIt(sortedFruitArray[mediumIndex]).equals("correct!")) {
-            if (oracle.isIt(sortedFruitArray[mediumIndex]).equals("lighter")) {
+        String fruitWeightCompare = oracle.isIt(sortedFruitArray[mediumIndex]);
+
+        while (!fruitWeightCompare.equals("correct!")) {
+            if (fruitWeightCompare.equals("lighter")) {
                 highestIndex = mediumIndex - 1;
             } else {
                 lowestIndex = mediumIndex + 1;
             }
+
             mediumIndex = (lowestIndex + highestIndex) / 2;
+            fruitWeightCompare = oracle.isIt(sortedFruitArray[mediumIndex]);
         }
 
         return sortedFruitArray[mediumIndex].getName();

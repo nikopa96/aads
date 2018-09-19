@@ -5,7 +5,7 @@ import ee.ttu.algoritmid.guessinggame.Oracle;
 public class Main {
 
     public static void main(String[] args) {
-        Fruit fruit = new Fruit("Virsik", 11);
+        Fruit fruit = new Fruit("Banaan", 2);
         Oracle oracle = new Oracle(fruit);
         GuessingGame guessingGame = new GuessingGame(oracle);
 
