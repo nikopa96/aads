@@ -1,5 +1,9 @@
 package ee.ttu.algoritmid.guessinggame;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 public class GuessingGame {
 
     Oracle oracle;
@@ -9,17 +13,13 @@ public class GuessingGame {
     }
 
     private Fruit[] sortByWeight(Fruit[] fruitArray) {
-        for (int i = 0; i < fruitArray.length; i++) {
-            for (int j = 0; j < fruitArray.length - 1 - i; j++) {
-                if (fruitArray[j + 1].getWeight() < fruitArray[j].getWeight()) {
-                    Fruit temp = fruitArray[j];
-                    fruitArray[j] = fruitArray[j + 1];
-                    fruitArray[j + 1] = temp;
-                }
-            }
-        }
+        List<Fruit> unsortedFruits = Arrays.asList(fruitArray);
+        unsortedFruits.sort(Comparator.comparingInt(Fruit::getWeight));
 
-        return fruitArray;
+        Fruit[] sortedFruitArray = new Fruit[unsortedFruits.size()];
+        unsortedFruits.toArray(sortedFruitArray);
+
+        return sortedFruitArray;
     }
 
     /**
