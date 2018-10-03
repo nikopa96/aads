@@ -12,7 +12,7 @@ public class Popularity {
     private Map<HashMap<Integer, Integer>, Integer> points = new HashMap<>();
 
     public Popularity(int maxCoordinates) {
-        this.maxCoordinates = maxCoordinates;
+        this.maxCoordinates = 100000;
     }
 
     /**
