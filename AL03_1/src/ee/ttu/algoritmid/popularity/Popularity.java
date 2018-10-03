@@ -12,7 +12,7 @@ public class Popularity {
     private Map<HashMap<Integer, Integer>, Integer> points = new HashMap<>();
 
     public Popularity(int maxCoordinates) {
-        this.maxCoordinates = 100000;
+        this.maxCoordinates = maxCoordinates;
     }
 
     /**
@@ -23,17 +23,15 @@ public class Popularity {
             double min = - Math.pow(10, 10);
             double max = Math.pow(10, 10);
 
-            if (x > min && x < max && y > min && y < max) {
-                HashMap<Integer, Integer> point = new HashMap<>();
-                point.put(x, y);
+            HashMap<Integer, Integer> point = new HashMap<>();
+            point.put(x, y);
 
-                Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
+            Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
 
-                if (occurrences.isPresent()) {
-                    points.put(point, occurrences.get() + 1);
-                } else {
-                    points.put(point, 1);
-                }
+            if (occurrences.isPresent()) {
+                points.put(point, occurrences.get() + 1);
+            } else {
+                points.put(point, 1);
             }
         }
     }
