@@ -19,7 +19,7 @@ public class Popularity {
      * @param x, y - coordinates
      */
     void addPoint(Integer x, Integer y) {
-        if (x < maxCoordinates && y < maxCoordinates) {
+        if (points.size() < maxCoordinates) {
             double min = - Math.pow(10, 10);
             double max = Math.pow(10, 10);
 
@@ -43,13 +43,17 @@ public class Popularity {
      * @return the number of occurrennces of the point
      */
     int pointPopularity(Integer x, Integer y) {
-        HashMap<Integer, Integer> point = new HashMap<>();
-        point.put(x, y);
+        if (points.size() < maxCoordinates) {
+            HashMap<Integer, Integer> point = new HashMap<>();
+            point.put(x, y);
 
-        Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
+            Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
 
-        if (occurrences.isPresent()) {
-            return occurrences.get();
+            if (occurrences.isPresent()) {
+                return occurrences.get();
+            } else {
+                return 0;
+            }
         } else {
             return 0;
         }
