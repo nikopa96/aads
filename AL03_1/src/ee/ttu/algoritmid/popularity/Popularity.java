@@ -35,11 +35,6 @@ public class Popularity {
         return counter;
     }
 
-    private Point findMostPopularPoint() {
-        return null;
-    }
-
-
     /**
      * @return the number of occurrennces of the most popular point
      */
