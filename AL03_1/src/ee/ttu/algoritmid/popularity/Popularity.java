@@ -37,13 +37,17 @@ public class Popularity {
      * @return the number of occurrennces of the point
      */
     int pointPopularity(Integer x, Integer y) {
-        HashMap<Integer, Integer> point = new HashMap<>();
-        point.put(x, y);
+        if (x < maxCoordinates && y < maxCoordinates) {
+            HashMap<Integer, Integer> point = new HashMap<>();
+            point.put(x, y);
 
-        Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
+            Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
 
-        if (occurrences.isPresent()) {
-            return occurrences.get();
+            if (occurrences.isPresent()) {
+                return occurrences.get();
+            } else {
+                return 0;
+            }
         } else {
             return 0;
         }
