@@ -53,7 +53,14 @@ public class Popularity {
      */
     int maxPopularity() {
         if (points.size() != 0) {
-            return Collections.max(points.values());
+            Map.Entry<HashMap<Integer, Integer>, Integer> maxEntry = null;
+            for (Map.Entry<HashMap<Integer, Integer>, Integer> entry : points.entrySet()) {
+                if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
+                    maxEntry = entry;
+                }
+            }
+
+            return maxEntry.getValue();
         } else {
             return 0;
         }
