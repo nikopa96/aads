@@ -7,6 +7,7 @@ import java.util.Optional;
 public class Popularity {
 
     private int maxCoordinates;
+    private int maxPopularity = 0;
 
     private Map<HashMap<Integer, Integer>, Integer> points = new HashMap<>();
 
@@ -24,7 +25,12 @@ public class Popularity {
         Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
 
         if (occurrences.isPresent()) {
-            points.put(point, occurrences.get() + 1);
+            Integer occurrence = occurrences.get() + 1;
+            points.put(point, occurrence);
+
+            if (maxPopularity < occurrence) {
+                this.maxPopularity = occurrence;
+            }
         } else {
             points.put(point, 1);
         }
@@ -53,14 +59,7 @@ public class Popularity {
      */
     int maxPopularity() {
         if (points.size() != 0) {
-            Map.Entry<HashMap<Integer, Integer>, Integer> maxEntry = null;
-            for (Map.Entry<HashMap<Integer, Integer>, Integer> entry : points.entrySet()) {
-                if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
-                    maxEntry = entry;
-                }
-            }
-
-            return maxEntry.getValue();
+            return maxPopularity;
         } else {
             return 0;
         }
