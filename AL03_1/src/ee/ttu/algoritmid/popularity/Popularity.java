@@ -19,7 +19,10 @@ public class Popularity {
      * @param x, y - coordinates
      */
     void addPoint(Integer x, Integer y) {
-        if (points.size() < maxCoordinates) {
+        double min = - Math.pow(10, 10);
+        double max = Math.pow(10, 10);
+
+        if (x > min && x < max && y > min && y < max) {
             HashMap<Integer, Integer> point = new HashMap<>();
             point.put(x, y);
 
