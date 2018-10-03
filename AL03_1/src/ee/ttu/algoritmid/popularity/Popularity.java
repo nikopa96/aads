@@ -1,13 +1,15 @@
 package ee.ttu.algoritmid.popularity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class Popularity {
 
     private int maxCoordinates;
 
-    private List<Point> points = new ArrayList<>();
+    private Map<HashMap<Integer, Integer>, Integer> points = new HashMap<>();
 
     public Popularity(int maxCoordinates) {
         this.maxCoordinates = maxCoordinates;
@@ -17,7 +19,18 @@ public class Popularity {
      * @param x, y - coordinates
      */
     void addPoint(Integer x, Integer y) {
-        points.add(new Point(x, y));
+        if (x < maxCoordinates && y < maxCoordinates) {
+            HashMap<Integer, Integer> point = new HashMap<>();
+            point.put(x, y);
+
+            Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
+
+            if (occurrences.isPresent()) {
+                points.put(point, occurrences.get() + 1);
+            } else {
+                points.put(point, 1);
+            }
+        }
     }
 
     /**
@@ -25,20 +38,23 @@ public class Popularity {
      * @return the number of occurrennces of the point
      */
     int pointPopularity(Integer x, Integer y) {
-        int counter = 0;
+        HashMap<Integer, Integer> point = new HashMap<>();
+        point.put(x, y);
 
-        for (Point point : points) {
-            if (point.getX().equals(x) && point.getY().equals(y)) {
-                counter++;
-            }
+        Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
+
+        if (occurrences.isPresent()) {
+            return occurrences.get();
+        } else {
+            return 0;
         }
-        return counter;
     }
+
 
     /**
      * @return the number of occurrennces of the most popular point
      */
     int maxPopularity() {
-        return 0;
+        return Collections.max(points.values());
     }
 }
