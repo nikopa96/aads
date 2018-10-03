@@ -55,6 +55,10 @@ public class Popularity {
      * @return the number of occurrennces of the most popular point
      */
     int maxPopularity() {
-        return Collections.max(points.values());
+        if (points.size() != 0) {
+            return Collections.max(points.values());
+        } else {
+            return 0;
+        }
     }
 }
