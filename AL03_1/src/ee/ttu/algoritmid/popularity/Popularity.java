@@ -8,7 +8,6 @@ import java.util.Optional;
 public class Popularity {
 
     private int maxCoordinates;
-    private int counter = 0;
 
     private Map<HashMap<Integer, Integer>, Integer> points = new HashMap<>();
 
@@ -20,19 +19,15 @@ public class Popularity {
      * @param x, y - coordinates
      */
     void addPoint(Integer x, Integer y) {
-        if (counter < maxCoordinates) {
-            HashMap<Integer, Integer> point = new HashMap<>();
-            point.put(x, y);
+        HashMap<Integer, Integer> point = new HashMap<>();
+        point.put(x, y);
 
-            Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
+        Optional<Integer> occurrences = Optional.ofNullable(points.get(point));
 
-            if (occurrences.isPresent()) {
-                points.put(point, occurrences.get() + 1);
-                this.counter++;
-            } else {
-                points.put(point, 1);
-                this.counter++;
-            }
+        if (occurrences.isPresent()) {
+            points.put(point, occurrences.get() + 1);
+        } else {
+            points.put(point, 1);
         }
     }
 
@@ -58,10 +53,6 @@ public class Popularity {
      * @return the number of occurrennces of the most popular point
      */
     int maxPopularity() {
-        if (points.size() != 0) {
-            return Collections.max(points.values());
-        } else {
-            return 0;
-        }
+        return Collections.max(points.values());
     }
 }
