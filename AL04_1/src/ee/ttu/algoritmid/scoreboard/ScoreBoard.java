@@ -19,6 +19,10 @@ public class ScoreBoard {
      * This method will be queried by the tests every time a new participant is added
      */
     public List<Participant> get(int n) {
-        return participants.values().stream().limit(n).collect(Collectors.toList());
+        if (!participants.isEmpty()) {
+            return participants.values().stream().limit(n).collect(Collectors.toList());
+        } else {
+            return Collections.emptyList();
+        }
     }
 }
