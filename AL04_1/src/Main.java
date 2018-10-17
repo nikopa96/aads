@@ -8,12 +8,12 @@ public class Main {
     public static void main(String[] args) {
         ScoreBoard scoreBoard = new ScoreBoard();
 
-//        scoreBoard.add(new Participant(1, "a", 66));
-//        scoreBoard.add(new Participant(1, "a", 55));
-//        scoreBoard.add(new Participant(1, "a", 78));
-//        scoreBoard.add(new Participant(1, "a", 94));
+        scoreBoard.add(new Participant(1, "a", 55));
+        scoreBoard.add(new Participant(2, "a", 55));
+        scoreBoard.add(new Participant(3, "a", 78));
+        scoreBoard.add(new Participant(4, "a", 94));
 
-        List<Participant> participants = scoreBoard.get(2);
-        participants.forEach(s -> System.out.println(s.getTime()));
+        List<Participant> participants = scoreBoard.get(3);
+//        participants.forEach(s -> System.out.println(s.getTime()));
     }
 }

@@ -1,17 +1,23 @@
 package ee.ttu.algoritmid.scoreboard;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ScoreBoard {
 
-    private Map<Integer, Participant> participants = new TreeMap<>();
+    private Map<Integer, TreeMap<Integer, Participant>> participants = new TreeMap<>();
 
     /**
      * Adds a participant's time to the checkpoint scoreboard
      */
     public void add(Participant participant) {
-        participants.put(participant.getTime(), participant);
+        if (!participants.containsKey(participant.getTime())) {
+            TreeMap<Integer, Participant> participantResult = new TreeMap<>();
+            participantResult.put(participant.getId(), participant);
+
+            participants.put(participant.getTime(), participantResult);
+        } else {
+            participants.get(participant.getTime()).put(participant.getId(), participant);
+        }
     }
 
     /**
@@ -20,7 +26,18 @@ public class ScoreBoard {
      */
     public List<Participant> get(int n) {
         if (!participants.isEmpty()) {
-            return participants.values().stream().limit(n).collect(Collectors.toList());
+            List<Participant> bestParticipants = new ArrayList<>();
+
+            for (Map.Entry<Integer, TreeMap<Integer, Participant>> entry : participants.entrySet()) {
+                for (Map.Entry<Integer, Participant> innerEntry : entry.getValue().entrySet()) {
+                    bestParticipants.add(innerEntry.getValue());
+
+                    if (bestParticipants.size() == n) {
+                        return bestParticipants;
+                    }
+                }
+            }
+            return bestParticipants;
         } else {
             return null;
         }
