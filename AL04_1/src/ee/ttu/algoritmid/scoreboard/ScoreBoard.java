@@ -25,7 +25,7 @@ public class ScoreBoard {
      * This method will be queried by the tests every time a new participant is added
      */
     public List<Participant> get(int n) {
-        if (!participants.isEmpty() && n != 0) {
+        if (!participants.isEmpty()) {
             List<Participant> bestParticipants = new ArrayList<>();
 
             for (Map.Entry<Integer, TreeMap<Integer, Participant>> entry : participants.entrySet()) {
