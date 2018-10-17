@@ -22,7 +22,7 @@ public class ScoreBoard {
         if (!participants.isEmpty()) {
             return participants.values().stream().limit(n).collect(Collectors.toList());
         } else {
-            return Collections.emptyList();
+            return null;
         }
     }
 }
