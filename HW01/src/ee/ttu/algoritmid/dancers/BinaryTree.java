@@ -1,6 +1,4 @@
-package ee.ttu.algoritmid.dancers.binarytree;
-
-import ee.ttu.algoritmid.dancers.Dancer;
+package ee.ttu.algoritmid.dancers;
 
 import java.util.List;
 
