@@ -26,7 +26,7 @@ public class HW01 implements Dancers {
     @Override
     public SimpleEntry<Dancer, Dancer> findPartnerFor(Dancer candidate) {
         if (candidate == null) {
-            return null;
+            throw new IllegalArgumentException();
         }
 
         if (candidate.getGender().equals(Dancer.Gender.FEMALE)) {
