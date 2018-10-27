@@ -2,6 +2,7 @@ package ee.ttu.algoritmid.dancers;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class HW01 implements Dancers {
@@ -18,6 +19,10 @@ public class HW01 implements Dancers {
         }
     }
 
+    private void sortDancersByHeight(List<Dancer> dancers) {
+        dancers.sort(Comparator.comparingInt(Dancer::getHeight));
+    }
+
     @Override
     public SimpleEntry<Dancer, Dancer> findPartnerFor(Dancer candidate) {
         if (candidate.getGender().equals(Dancer.Gender.FEMALE)) {
@@ -32,8 +37,9 @@ public class HW01 implements Dancers {
                 waitingDancers.add(candidate);
                 return null;
             } else {
+                sortDancersByHeight(suitablePartners);
                 Dancer partner = suitablePartners.get(0);
-                menDancersTree.remove(suitablePartners.get(0));
+                menDancersTree.remove(partner);
                 waitingDancers.remove(partner);
 
                 return new SimpleEntry<>(partner, candidate);
@@ -50,8 +56,9 @@ public class HW01 implements Dancers {
                 waitingDancers.add(candidate);
                 return null;
             } else {
-                Dancer partner = suitablePartners.get(0);
-                womenDancersTree.remove(suitablePartners.get(0));
+                sortDancersByHeight(suitablePartners);
+                Dancer partner = suitablePartners.get(suitablePartners.size() - 1);
+                womenDancersTree.remove(partner);
                 waitingDancers.remove(partner);
 
                 return new SimpleEntry<>(candidate, partner);
@@ -61,6 +68,7 @@ public class HW01 implements Dancers {
 
     @Override
     public List<Dancer> returnWaitingList() {
+        sortDancersByHeight(waitingDancers);
         return waitingDancers;
     }
 

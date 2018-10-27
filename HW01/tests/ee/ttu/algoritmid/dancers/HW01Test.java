@@ -47,13 +47,11 @@ public class HW01Test {
         addDancerAndTest(impl, 126, MALE, 120);
         addDancerAndTest(impl, 136, MALE, 130);
         addDancerAndTest(impl, 106, MALE, 100);
-        addDancerAndTest(impl, 116, MALE, 109);
         addDancerAndTest(impl, 116, MALE, 111);
+        addDancerAndTest(impl, 116, MALE, 109);
 
         List<Integer> correctIds = Arrays.asList(10, 12, 20, 30, 40, 49, 51, 60);
         List<Dancer> waitingList = impl.returnWaitingList();
-
-        System.out.println(waitingList);
 
         final boolean result1 = waitingList.size() == correctIds.size();
         if (!result1) fail("Number of remaining dancer is not correct.");
@@ -104,8 +102,6 @@ public class HW01Test {
         List<Dancer> waitingList = impl.returnWaitingList();
         final boolean result1 = waitingList.size() == correctIds.size();
         if (!result1) fail("Number of remaining dancer is not correct.");
-
-        System.out.println(waitingList);
 
         boolean result2 = checkDancerIds(waitingList, correctIds);
         if (!result2) fail("Remaining dancer IDs are not correct.");
