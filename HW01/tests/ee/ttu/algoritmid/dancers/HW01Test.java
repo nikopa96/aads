@@ -105,6 +105,8 @@ public class HW01Test {
         final boolean result1 = waitingList.size() == correctIds.size();
         if (!result1) fail("Number of remaining dancer is not correct.");
 
+        System.out.println(waitingList);
+
         boolean result2 = checkDancerIds(waitingList, correctIds);
         if (!result2) fail("Remaining dancer IDs are not correct.");
     }

@@ -6,6 +6,7 @@ import java.util.List;
 
 public class HW01 implements Dancers {
 
+    private List<Dancer> waitingDancers = new ArrayList<>();
     private BinaryTree menDancersTree = new BinaryTree();
     private BinaryTree womenDancersTree = new BinaryTree();
 
@@ -28,10 +29,13 @@ public class HW01 implements Dancers {
 
             if (suitablePartners.size() == 0) {
                 addDancer(candidate);
+                waitingDancers.add(candidate);
                 return null;
             } else {
                 Dancer partner = suitablePartners.get(0);
                 menDancersTree.remove(suitablePartners.get(0));
+                waitingDancers.remove(partner);
+
                 return new SimpleEntry<>(partner, candidate);
             }
         } else {
@@ -43,10 +47,13 @@ public class HW01 implements Dancers {
 
             if (suitablePartners.size() == 0) {
                 addDancer(candidate);
+                waitingDancers.add(candidate);
                 return null;
             } else {
                 Dancer partner = suitablePartners.get(0);
                 womenDancersTree.remove(suitablePartners.get(0));
+                waitingDancers.remove(partner);
+
                 return new SimpleEntry<>(candidate, partner);
             }
         }
@@ -54,16 +61,6 @@ public class HW01 implements Dancers {
 
     @Override
     public List<Dancer> returnWaitingList() {
-        List<Dancer> waitingMenDancers = new ArrayList<>();
-        List<Dancer> waitingWomenDancers = new ArrayList<>();
-
-        menDancersTree.getAllDancers(menDancersTree.getHighestNode(), waitingMenDancers);
-        womenDancersTree.getAllDancers(womenDancersTree.getHighestNode(), waitingWomenDancers);
-
-        List<Dancer> waitingDancers = new ArrayList<>();
-        waitingDancers.addAll(waitingMenDancers);
-        waitingDancers.addAll(waitingWomenDancers);
-
         return waitingDancers;
     }
 

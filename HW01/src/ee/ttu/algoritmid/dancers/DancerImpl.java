@@ -28,6 +28,26 @@ public class DancerImpl implements Dancer {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DancerImpl dancer = (DancerImpl) o;
+
+        if (id != dancer.id) return false;
+        if (height != dancer.height) return false;
+        return gender == dancer.gender;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        result = 31 * result + height;
+        return result;
+    }
+
+    @Override
     public String toString() {
         return String.valueOf(height);
     }
