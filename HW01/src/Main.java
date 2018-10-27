@@ -1,14 +1,6 @@
-import ee.ttu.algoritmid.dancers.Dancers;
 import ee.ttu.algoritmid.dancers.HW01;
-import ee.ttu.algoritmid.dancers.binarytree.BinaryTree;
-import ee.ttu.algoritmid.dancers.binarytree.Node;
-import ee.ttu.algoritmid.dancers.dancer.Dancer;
-import ee.ttu.algoritmid.dancers.dancer.DancerImpl;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static ee.ttu.algoritmid.dancers.dancer.Dancer.Gender.FEMALE;
+import ee.ttu.algoritmid.dancers.Dancer;
+import ee.ttu.algoritmid.dancers.DancerImpl;
 
 public class Main {
 

@@ -1,7 +1,6 @@
 package ee.ttu.algoritmid.dancers;
 
 import ee.ttu.algoritmid.dancers.binarytree.BinaryTree;
-import ee.ttu.algoritmid.dancers.dancer.Dancer;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;

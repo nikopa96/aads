@@ -1,4 +1,4 @@
-package ee.ttu.algoritmid.dancers.dancer;
+package ee.ttu.algoritmid.dancers;
 
 /**
  * API specification for the objects

@@ -1,15 +1,13 @@
 package ee.ttu.algoritmid.dancers;
 
-import ee.ttu.algoritmid.dancers.dancer.Dancer;
-import ee.ttu.algoritmid.dancers.dancer.DancerImpl;
 import org.junit.Test;
 
 import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.List;
 
-import static ee.ttu.algoritmid.dancers.dancer.Dancer.Gender.FEMALE;
-import static ee.ttu.algoritmid.dancers.dancer.Dancer.Gender.MALE;
+import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
+import static ee.ttu.algoritmid.dancers.Dancer.Gender.MALE;
 import static org.junit.Assert.fail;
 
 public class HW01Test {

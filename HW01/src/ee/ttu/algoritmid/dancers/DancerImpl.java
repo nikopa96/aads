@@ -1,4 +1,4 @@
-package ee.ttu.algoritmid.dancers.dancer;
+package ee.ttu.algoritmid.dancers;
 
 public class DancerImpl implements Dancer {
 
