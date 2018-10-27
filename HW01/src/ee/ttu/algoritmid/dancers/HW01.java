@@ -25,6 +25,10 @@ public class HW01 implements Dancers {
 
     @Override
     public SimpleEntry<Dancer, Dancer> findPartnerFor(Dancer candidate) {
+        if (candidate == null) {
+            return null;
+        }
+
         if (candidate.getGender().equals(Dancer.Gender.FEMALE)) {
             int minValue = candidate.getHeight() + 5;
             int maxValue = candidate.getHeight() + 9;
