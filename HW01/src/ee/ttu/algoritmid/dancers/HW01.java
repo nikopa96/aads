@@ -67,13 +67,6 @@ public class HW01 implements Dancers {
 
     @Override
     public List<Dancer> returnWaitingList() {
-        waitingDancers.add(new DancerImpl(1, MALE, 3));
-        waitingDancers.add(new DancerImpl(1, FEMALE, 3));
-        waitingDancers.add(new DancerImpl(2, MALE, 9));
-        waitingDancers.add(new DancerImpl(3, MALE, 2));
-        waitingDancers.add(new DancerImpl(4, MALE, 5));
-        waitingDancers.add(new DancerImpl(5, MALE, 3));
-
         waitingDancers.sort(new DancersComparator());
 
         return waitingDancers;
