@@ -2,7 +2,6 @@ package ee.ttu.algoritmid.dancers;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class HW01 implements Dancers {
@@ -11,16 +10,12 @@ public class HW01 implements Dancers {
     private BinaryTree menDancersTree = new BinaryTree();
     private BinaryTree womenDancersTree = new BinaryTree();
 
-    public void addDancer(Dancer dancer) {
+    private void addDancer(Dancer dancer) {
         if (dancer.getGender().equals(Dancer.Gender.FEMALE)) {
             womenDancersTree.insert(dancer);
         } else {
             menDancersTree.insert(dancer);
         }
-    }
-
-    private void sortDancersByHeight(List<Dancer> dancers) {
-        dancers.sort(Comparator.comparingInt(Dancer::getHeight));
     }
 
     @Override
@@ -41,11 +36,9 @@ public class HW01 implements Dancers {
                 waitingDancers.add(candidate);
                 return null;
             } else {
-                sortDancersByHeight(suitablePartners);
                 Dancer partner = suitablePartners.get(0);
                 menDancersTree.remove(partner);
                 waitingDancers.remove(partner);
-
                 return new SimpleEntry<>(partner, candidate);
             }
         } else {
@@ -60,7 +53,6 @@ public class HW01 implements Dancers {
                 waitingDancers.add(candidate);
                 return null;
             } else {
-                sortDancersByHeight(suitablePartners);
                 Dancer partner = suitablePartners.get(suitablePartners.size() - 1);
                 womenDancersTree.remove(partner);
                 waitingDancers.remove(partner);
@@ -72,7 +64,8 @@ public class HW01 implements Dancers {
 
     @Override
     public List<Dancer> returnWaitingList() {
-        sortDancersByHeight(waitingDancers);
+        waitingDancers.sort(new DancersComparator());
+
         return waitingDancers;
     }
 
