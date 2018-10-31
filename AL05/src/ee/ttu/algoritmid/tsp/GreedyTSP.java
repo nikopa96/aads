@@ -1,7 +1,6 @@
 package ee.ttu.algoritmid.tsp;
 
 import java.util.Arrays;
-import java.util.Stack;
 
 public class GreedyTSP {
 
@@ -40,29 +39,19 @@ public class GreedyTSP {
                 adjacencyMatrix[nextTown][i] = Integer.MAX_VALUE;
             }
 
-//            visitedTowns[visitedTowns.length - 1] = 0;
+            visitedTowns[visitedTowns.length - 1] = 0;
 
             return visitedTowns;
         }
     }
 
     public static void main(String[] args) {
-//        int[][] adjacencyMatrix = {
-//                {0, 10, 15, 20},
-//                {10, 0, 35, 25},
-//                {15, 35, 0, 30},
-//                {20, 25, 30, 35}
-//        };
-
         int[][] adjacencyMatrix = {
-                {0, 1, 5},
-                {2, 0, 3},
-                {3, 8, 0}
+                {0, 10, 15, 20},
+                {10, 0, 35, 25},
+                {15, 35, 0, 30},
+                {20, 25, 30, 35}
         };
-
-//        adjacencyMatrix[0][0] = Integer.MAX_VALUE;
-//
-//        System.out.println(findNearTown(adjacencyMatrix[0]));
 
         System.out.println(Arrays.toString(greedySolution(adjacencyMatrix)));
     }
