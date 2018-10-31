@@ -52,13 +52,6 @@ public class GreedyTSP {
     }
 
     public static void main(String[] args) {
-//        int[][] adjacencyMatrix = {
-//                {0, 10, 15, 20},
-//                {10, 0, 35, 25},
-//                {15, 35, 0, 30},
-//                {20, 25, 30, 35}
-//        };
-
         int[][] adjacencyMatrix = {
                 {0, 0},
                 {0, 0}
