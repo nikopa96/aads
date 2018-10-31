@@ -20,9 +20,10 @@ public class GreedyTSP {
 
     /* Greedy search */
     public static int[] greedySolution(int[][] adjacencyMatrix) {
-
         if (adjacencyMatrix.length == 1) {
             return new int[]{0};
+        } else if (adjacencyMatrix.length == 2) {
+            return new int[] {0, adjacencyMatrix[0][1], adjacencyMatrix[1][0], 0};
         } else {
             int[] visitedTowns = new int[adjacencyMatrix.length + 1];
 
@@ -43,14 +44,9 @@ public class GreedyTSP {
     }
 
     public static void main(String[] args) {
-//        int[][] adjacencyMatrix = {
-//                {0, 1, 5},
-//                {2, 0, 3},
-//                {3, 8, 0}
-//        };
-
         int[][] adjacencyMatrix = {
-                {0}
+                {0, 1},
+                {2, 0}
         };
 
         System.out.println(Arrays.toString(greedySolution(adjacencyMatrix)));
