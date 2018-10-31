@@ -1,16 +1,17 @@
 package ee.ttu.algoritmid.tsp;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 public class GreedyTSP {
 
-    private static int findNearTown(int[] routes) {
-        int minDistanceFromCurrentCity = routes[0];
+    private static int findNearTown(int[] towns) {
+        int minDistanceFromCurrentCity = towns[0];
         int min = 0;
 
-        for (int i = 1; i < routes.length; i++) {
-            if (routes[i] < minDistanceFromCurrentCity) {
-                minDistanceFromCurrentCity = routes[i];
+        for (int i = 0; i < towns.length; i++) {
+            if (towns[i] < minDistanceFromCurrentCity) {
+                minDistanceFromCurrentCity = towns[i];
                 min = i;
             }
         }
@@ -22,32 +23,46 @@ public class GreedyTSP {
     public static int[] greedySolution(int[][] adjacencyMatrix) {
         if (adjacencyMatrix.length == 1) {
             return new int[]{0};
-        } else if (adjacencyMatrix.length == 2) {
-            return new int[] {0, adjacencyMatrix[0][1], adjacencyMatrix[1][0], 0};
         } else {
             int[] visitedTowns = new int[adjacencyMatrix.length + 1];
+            int j = 1;
+            int nextTown = 0;
 
-            int j = 0;
-            for (int i = 0; i < visitedTowns.length; i++) {
-                adjacencyMatrix[j][j] = Integer.MAX_VALUE;
-                int min = findNearTown(adjacencyMatrix[j]);
+            for (int i = 0; i < adjacencyMatrix.length; i++) {
+                int[] tempTown = adjacencyMatrix[nextTown];
+                tempTown[nextTown] = Integer.MAX_VALUE;
 
-                visitedTowns[i] = j;
-                adjacencyMatrix[min][j] = Integer.MAX_VALUE;
-                j = min;
+                nextTown = findNearTown(tempTown);
+                visitedTowns[j] = nextTown;
+                j++;
+
+                adjacencyMatrix[nextTown][0] = Integer.MAX_VALUE;
+                adjacencyMatrix[nextTown][i] = Integer.MAX_VALUE;
             }
 
-            visitedTowns[adjacencyMatrix.length] = 0;
+//            visitedTowns[visitedTowns.length - 1] = 0;
 
             return visitedTowns;
         }
     }
 
     public static void main(String[] args) {
+//        int[][] adjacencyMatrix = {
+//                {0, 10, 15, 20},
+//                {10, 0, 35, 25},
+//                {15, 35, 0, 30},
+//                {20, 25, 30, 35}
+//        };
+
         int[][] adjacencyMatrix = {
-                {0, 1},
-                {2, 0}
+                {0, 1, 5},
+                {2, 0, 3},
+                {3, 8, 0}
         };
+
+//        adjacencyMatrix[0][0] = Integer.MAX_VALUE;
+//
+//        System.out.println(findNearTown(adjacencyMatrix[0]));
 
         System.out.println(Arrays.toString(greedySolution(adjacencyMatrix)));
     }
