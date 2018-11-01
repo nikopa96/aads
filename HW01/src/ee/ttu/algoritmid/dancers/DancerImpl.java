@@ -49,11 +49,8 @@ public class DancerImpl implements Dancer {
 
     @Override
     public String toString() {
-        if (gender.equals(Gender.MALE)) {
-            return "{gender=" + gender +
-                    ", height=" + height + "}";
-        } else {
-            return String.valueOf(height);
-        }
+        return "{gender=" + gender +
+                ", height=" + height + ", " +
+                "id=" + id + "}";
     }
 }

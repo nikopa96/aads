@@ -99,7 +99,7 @@ public class BinaryTree {
             }
         }
 
-        if (highNode.getValue() != requestedNode.getValue()) {
+        if (!highNode.getDancer().equals(requestedNode.getDancer())) {
             requestedNode.setValue(highNode.getValue());
             requestedNode.setDancer(highNode.getDancer());
         }

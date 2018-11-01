@@ -4,9 +4,6 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 
-import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
-import static ee.ttu.algoritmid.dancers.Dancer.Gender.MALE;
-
 public class HW01 implements Dancers {
 
     private List<Dancer> waitingDancers = new ArrayList<>();

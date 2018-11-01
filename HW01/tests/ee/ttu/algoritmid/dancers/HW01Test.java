@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.AbstractMap;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import static ee.ttu.algoritmid.dancers.Dancer.Gender.FEMALE;
@@ -105,6 +106,30 @@ public class HW01Test {
 
         boolean result2 = checkDancerIds(waitingList, correctIds);
         if (!result2) fail("Remaining dancer IDs are not correct.");
+    }
+
+    @Test
+    public void testSameHeightMales() {
+        HW01 impl = new HW01();
+        impl.findPartnerFor(new DancerImpl(1, MALE, 1));
+        impl.findPartnerFor(new DancerImpl(2, MALE, 8));
+        impl.findPartnerFor(new DancerImpl(3, MALE, 3));
+        impl.findPartnerFor(new DancerImpl(4, MALE, 5));
+        impl.findPartnerFor(new DancerImpl(5, MALE, 8));
+
+        impl.findPartnerFor(new DancerImpl(6, FEMALE, 3));
+        impl.findPartnerFor(new DancerImpl(7, FEMALE, 3));
+
+        HashSet<Integer> presentHeights = new HashSet<>();
+        List<Dancer> waitingList = impl.returnWaitingList();
+        for (Dancer d : waitingList) {
+            presentHeights.add(d.getHeight());
+        }
+
+        final boolean result = !presentHeights.contains(8) && presentHeights.contains(5);
+        if (!result) {
+            fail("Your implementation did not work with same heights among the same sex.");
+        }
     }
 
     private static void addDancerAndTest(HW01 impl, int height, Dancer.Gender gender, Integer takeoutHeight) {
