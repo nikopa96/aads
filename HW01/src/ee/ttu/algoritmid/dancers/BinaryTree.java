@@ -15,93 +15,93 @@ public class BinaryTree {
         newNode.setDancer(dancer);
         newNode.setValue(dancer.getHeight());
 
-        Node highNode = null;
-        Node lowNode = highestNode;
+        Node y = null;
+        Node x = highestNode;
 
-        while (lowNode != null) {
-            highNode = lowNode;
-            if (newNode.getValue() >= lowNode.getValue()) {
-                lowNode = lowNode.getRightChild();
+        while (x != null) {
+            y = x;
+            if (newNode.getValue() >= x.getValue()) {
+                x = x.getRightChild();
             } else {
-                lowNode = lowNode.getLeftChild();
+                x = x.getLeftChild();
             }
         }
 
-        newNode.setParent(highNode);
+        newNode.setParent(y);
 
-        if (highNode == null) {
+        if (y == null) {
             highestNode = newNode;
         } else {
-            if (newNode.getValue() < highNode.getValue()) {
-                highNode.setLeftChild(newNode);
+            if (newNode.getValue() < y.getValue()) {
+                y.setLeftChild(newNode);
             } else {
-                highNode.setRightChild(newNode);
+                y.setRightChild(newNode);
             }
         }
     }
 
     public Node getMin(Node requestedNode) {
-        Node newNode;
+        Node minNode;
 
         while (requestedNode.getLeftChild() != null) {
             requestedNode = requestedNode.getLeftChild();
         }
 
-        newNode = requestedNode;
-        return newNode;
+        minNode = requestedNode;
+        return minNode;
     }
 
     public Node getSuccessor(Node requestedNode) {
-        Node highNode;
+        Node y;
 
         if (requestedNode.getRightChild() != null) {
             return getMin(requestedNode.getRightChild());
         }
 
-        highNode = requestedNode.getParent();
+        y = requestedNode.getParent();
 
-        while (highNode != null && requestedNode == highNode.getRightChild()) {
-            requestedNode = highNode;
-            highNode = highNode.getParent();
+        while (y != null && requestedNode == y.getRightChild()) {
+            requestedNode = y;
+            y = y.getParent();
         }
 
-        return highNode;
+        return y;
     }
 
     public void remove(Dancer dancer) {
         Node requestedNode = findNode(dancer);
-        Node highNode;
-        Node lowNode;
+        Node y;
+        Node x;
 
         if (requestedNode.getLeftChild() == null || requestedNode.getRightChild() == null) {
-            highNode = requestedNode;
+            y = requestedNode;
         } else {
-            highNode = getSuccessor(requestedNode);
+            y = getSuccessor(requestedNode);
         }
 
-        if (highNode.getLeftChild() != null) {
-            lowNode = highNode.getLeftChild();
+        if (y.getLeftChild() != null) {
+            x = y.getLeftChild();
         } else {
-            lowNode = highNode.getRightChild();
+            x = y.getRightChild();
         }
 
-        if (lowNode != null) {
-            lowNode.setParent(highNode.getParent());
+        if (x != null) {
+            x.setParent(y.getParent());
         }
 
-        if (highNode.getParent() == null) {
-            highestNode = lowNode;
+        if (y.getParent() == null) {
+            highestNode = x;
         } else {
-            if (highNode == highNode.getParent().getLeftChild()) {
-                highNode.getParent().setLeftChild(lowNode);
+            if (y == y.getParent().getLeftChild()) {
+                y.getParent().setLeftChild(x);
             } else {
-                highNode.getParent().setRightChild(lowNode);
+                y.getParent().setRightChild(x);
             }
         }
 
-        if (!highNode.getDancer().equals(requestedNode.getDancer())) {
-            requestedNode.setValue(highNode.getValue());
-            requestedNode.setDancer(highNode.getDancer());
+        if (!y.getDancer().equals(requestedNode.getDancer())) {
+            requestedNode.setValue(y.getValue());
+            requestedNode.setDancer(y.getDancer());
         }
     }
 
@@ -110,19 +110,19 @@ public class BinaryTree {
         newNode.setDancer(dancer);
         newNode.setValue(dancer.getHeight());
 
-        Node lowNode = highestNode;
+        Node x = highestNode;
 
         if (highestNode != null) {
-            while (lowNode != null && newNode.getValue() != lowNode.getValue()) {
-                if (newNode.getValue() >= lowNode.getValue()) {
-                    lowNode = lowNode.getRightChild();
+            while (x != null && newNode.getValue() != x.getValue()) {
+                if (newNode.getValue() >= x.getValue()) {
+                    x = x.getRightChild();
                 } else {
-                    lowNode = lowNode.getLeftChild();
+                    x = x.getLeftChild();
                 }
             }
         }
 
-        return lowNode;
+        return x;
     }
 
     public List<Dancer> getDancersInRange(int minValue, int maxValue, Node supportedNode, List<Dancer> dancers) {
@@ -134,15 +134,6 @@ public class BinaryTree {
             }
 
             return getDancersInRange(minValue, maxValue, supportedNode.getRightChild(), dancers);
-        } else {
-            return dancers;
-        }
-    }
-
-    public List<Dancer> getAllDancers(Node supportedNode, List<Dancer> dancers) {
-        if (supportedNode != null) {
-            dancers.add(supportedNode.getDancer());
-            return getAllDancers(supportedNode.getRightChild(), dancers);
         } else {
             return dancers;
         }

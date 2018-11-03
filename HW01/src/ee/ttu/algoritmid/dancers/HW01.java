@@ -34,11 +34,13 @@ public class HW01 implements Dancers {
             if (suitablePartners.size() == 0) {
                 addDancer(candidate);
                 waitingDancers.add(candidate);
+
                 return null;
             } else {
                 Dancer partner = suitablePartners.get(0);
                 menDancersTree.remove(partner);
                 waitingDancers.remove(partner);
+
                 return new SimpleEntry<>(partner, candidate);
             }
         } else {
@@ -65,15 +67,6 @@ public class HW01 implements Dancers {
     @Override
     public List<Dancer> returnWaitingList() {
         waitingDancers.sort(new DancersComparator());
-
         return waitingDancers;
-    }
-
-    public BinaryTree getWomenDancersTree() {
-        return womenDancersTree;
-    }
-
-    public BinaryTree getMenDancersTree() {
-        return menDancersTree;
     }
 }
