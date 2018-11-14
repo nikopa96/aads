@@ -57,45 +57,6 @@ public class AL06 {
          *                    (some tests only check for number of nodes)
          */
         public SimpleEntry<Integer, List<Integer>> breadthFirstSearch(Integer start, Integer goal) {
-//            List<Integer> visited = new ArrayList<>();
-//            Queue<Integer> queue = new LinkedList<>();
-//
-//            queue.add(start);
-//            visited.add(start);
-//
-//            while (!queue.isEmpty()) {
-//                Integer currentFriend = queue.remove();
-//
-//                if (currentFriend.equals(goal)) {
-//                    return new SimpleEntry<>(visited.size(), visited);
-//                } else {
-//                    List<Integer> friendChildren = new ArrayList<>();
-//
-//                    for (Integer notVisitedFriend : getGraph().get(currentFriend)) {
-//                        if (!visited.contains(notVisitedFriend)) {
-//                            friendChildren.add(notVisitedFriend);
-//                        }
-//                    }
-//
-//                    System.out.println(friendChildren);
-//
-//                    if (friendChildren.isEmpty()) {
-//
-//                    } else {
-//                        queue.addAll(friendChildren);
-//                    }
-//
-//                    if (queue.contains(goal)) {
-//                        visited.add(currentFriend);
-//                        visited.add(goal);
-//                        return new SimpleEntry<>(visited.size(), visited);
-//                    }
-//
-//                    visited.add(currentFriend);
-//                }
-//            }
-
-
             List<Integer> visited = new ArrayList<>();
             Queue<Integer> queue = new LinkedList<>();
             Map<Integer, Integer> distance = new HashMap<>();
@@ -122,6 +83,9 @@ public class AL06 {
                         }
                     }
 
+                    if (visited.size() > 0 && !getGraph().get(currentFriend).contains(visited.get(visited.size() - 1))) {
+                        visited.remove(visited.size() - 1);
+                    }
                     visited.add(currentFriend);
 
                     if (queue.contains(goal)) {
@@ -130,7 +94,6 @@ public class AL06 {
                     }
                 }
             }
-
 
             return null;
         }

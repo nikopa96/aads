@@ -16,9 +16,10 @@ public class Main {
                 new SimpleEntry<>(1, 4),
                 new SimpleEntry<>(3, 4),
                 new SimpleEntry<>(4, 2),
-                new SimpleEntry<>(0, 2)
+                new SimpleEntry<>(0, 2),
+                new SimpleEntry<>(3, 5)
         );
 
-        System.out.println(al06.buildGraphAndFindLink(entries, new SimpleEntry<>(0, 4)));
+        System.out.println(al06.buildGraphAndFindLink(entries, new SimpleEntry<>(0, 5)));
     }
 }
