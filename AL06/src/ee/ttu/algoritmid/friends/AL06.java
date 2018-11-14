@@ -68,10 +68,18 @@ public class AL06 {
                 if (currentFriend.equals(goal)) {
                     return new SimpleEntry<>(visited.size(), visited);
                 } else {
+                    List<Integer> friendChildren = new ArrayList<>();
+
                     for (Integer notVisitedFriend : getGraph().get(currentFriend)) {
                         if (!visited.contains(notVisitedFriend) && !queue.contains(notVisitedFriend)) {
-                            queue.add(notVisitedFriend);
+                            friendChildren.add(notVisitedFriend);
                         }
+                    }
+
+                    if (friendChildren.isEmpty()) {
+                        return null;
+                    } else {
+                        queue.addAll(friendChildren);
                     }
 
                     if (queue.contains(goal)) {
