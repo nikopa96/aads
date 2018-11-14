@@ -57,10 +57,52 @@ public class AL06 {
          *                    (some tests only check for number of nodes)
          */
         public SimpleEntry<Integer, List<Integer>> breadthFirstSearch(Integer start, Integer goal) {
+//            List<Integer> visited = new ArrayList<>();
+//            Queue<Integer> queue = new LinkedList<>();
+//
+//            queue.add(start);
+//            visited.add(start);
+//
+//            while (!queue.isEmpty()) {
+//                Integer currentFriend = queue.remove();
+//
+//                if (currentFriend.equals(goal)) {
+//                    return new SimpleEntry<>(visited.size(), visited);
+//                } else {
+//                    List<Integer> friendChildren = new ArrayList<>();
+//
+//                    for (Integer notVisitedFriend : getGraph().get(currentFriend)) {
+//                        if (!visited.contains(notVisitedFriend)) {
+//                            friendChildren.add(notVisitedFriend);
+//                        }
+//                    }
+//
+//                    System.out.println(friendChildren);
+//
+//                    if (friendChildren.isEmpty()) {
+//
+//                    } else {
+//                        queue.addAll(friendChildren);
+//                    }
+//
+//                    if (queue.contains(goal)) {
+//                        visited.add(currentFriend);
+//                        visited.add(goal);
+//                        return new SimpleEntry<>(visited.size(), visited);
+//                    }
+//
+//                    visited.add(currentFriend);
+//                }
+//            }
+
+
             List<Integer> visited = new ArrayList<>();
             Queue<Integer> queue = new LinkedList<>();
+            Map<Integer, Integer> distance = new HashMap<>();
 
             queue.add(start);
+            distance.put(start, 0);
+            int counter = 0;
 
             while (!queue.isEmpty()) {
                 Integer currentFriend = queue.remove();
@@ -68,29 +110,27 @@ public class AL06 {
                 if (currentFriend.equals(goal)) {
                     return new SimpleEntry<>(visited.size(), visited);
                 } else {
-                    List<Integer> friendChildren = new ArrayList<>();
+                    counter++;
 
-                    for (Integer notVisitedFriend : getGraph().get(currentFriend)) {
-                        if (!visited.contains(notVisitedFriend) && !queue.contains(notVisitedFriend)) {
-                            friendChildren.add(notVisitedFriend);
+                    for (Integer neighbourFriend : getGraph().get(currentFriend)) {
+                        if (!distance.containsKey(neighbourFriend)) {
+                            distance.put(neighbourFriend, counter);
+                        }
+
+                        if (distance.get(neighbourFriend) > distance.get(currentFriend) && !queue.contains(neighbourFriend)) {
+                            queue.add(neighbourFriend);
                         }
                     }
 
-                    if (friendChildren.isEmpty()) {
-                        return null;
-                    } else {
-                        queue.addAll(friendChildren);
-                    }
+                    visited.add(currentFriend);
 
                     if (queue.contains(goal)) {
-                        visited.add(currentFriend);
                         visited.add(goal);
                         return new SimpleEntry<>(visited.size(), visited);
                     }
-
-                    visited.add(currentFriend);
                 }
             }
+
 
             return null;
         }

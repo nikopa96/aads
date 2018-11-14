@@ -19,6 +19,6 @@ public class Main {
                 new SimpleEntry<>(0, 2)
         );
 
-        System.out.println(al06.buildGraphAndFindLink(entries, new SimpleEntry<>(0, 3)));
+        System.out.println(al06.buildGraphAndFindLink(entries, new SimpleEntry<>(0, 4)));
     }
 }
