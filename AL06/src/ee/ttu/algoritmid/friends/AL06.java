@@ -83,9 +83,6 @@ public class AL06 {
                         }
                     }
 
-                    if (visited.size() > 0 && !getGraph().get(currentFriend).contains(visited.get(visited.size() - 1))) {
-                        visited.remove(visited.size() - 1);
-                    }
                     visited.add(currentFriend);
 
                     if (queue.contains(goal)) {
