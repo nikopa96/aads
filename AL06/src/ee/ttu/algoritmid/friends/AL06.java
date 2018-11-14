@@ -86,11 +86,11 @@ public class AL06 {
                     visited.add(currentFriend);
 
                     if (queue.contains(goal)) {
+                        visited.add(goal);
                         return new SimpleEntry<>(visited.size(), visited);
                     }
                 }
             }
-
 
             return null;
         }
