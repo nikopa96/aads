@@ -3,8 +3,6 @@ package ee.ttu.algoritmid.stamps;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Stamps {
 
@@ -53,14 +51,25 @@ public class Stamps {
 
         findStamps2(0, stampsArray, sum);
 
-        List<Integer> stamps = new ArrayList<>();
-        for (int i = 0; i < bestCounts.length; i++) {
-            for (int j = 0; j < bestCounts[i]; j++) {
-                stamps.add(stampsArray[i]);
-            }
+//        List<Integer> tempList = new ArrayList<>();
+//        for (int i = 0; i < bestCounts.length; i++) {
+//            if (bestCounts[i] != 0) {
+//                tempList.add(bestCounts[i]);
+//            }
+//        }
+//
+//        List<Integer> stamps = new ArrayList<>();
+//        for (int i = 0; i < tempList.size(); i++) {
+//            for (int j = 0; j < tempList.get(i); j++) {
+//                stamps.add(stampsArray[i]);
+//            }
+//        }
+        List<Integer> stamps2 = new ArrayList<>();
+        for (int i = 0; i < bestCount; i++) {
+            stamps2.add(0);
         }
 
-        return stamps;
+        return stamps2;
     }
 
     public static void main(String[] args) {
