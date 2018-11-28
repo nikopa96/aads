@@ -35,6 +35,10 @@ public class Stamps {
     }
 
     public static List<Integer> findStamps(int sum, List<Integer> stampOptions) throws IllegalArgumentException {
+        if (stampOptions.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
+
         bestCount = Integer.MAX_VALUE;
         counts = new int[stampOptions.size()];
         bestCounts = new int[stampOptions.size()];
