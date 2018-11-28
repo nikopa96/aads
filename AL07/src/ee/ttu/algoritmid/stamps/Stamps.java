@@ -41,10 +41,6 @@ public class Stamps {
             throw new IllegalArgumentException();
         }
 
-        if (!stampOptions.contains(1)) {
-            stampOptions.add(1);
-        }
-
         bestCount = Integer.MAX_VALUE;
         counts = new int[stampOptions.size()];
         bestCounts = new int[stampOptions.size()];
