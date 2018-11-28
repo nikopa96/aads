@@ -51,25 +51,21 @@ public class Stamps {
 
         findStamps2(0, stampsArray, sum);
 
-//        List<Integer> tempList = new ArrayList<>();
-//        for (int i = 0; i < bestCounts.length; i++) {
-//            if (bestCounts[i] != 0) {
-//                tempList.add(bestCounts[i]);
-//            }
-//        }
-//
-//        List<Integer> stamps = new ArrayList<>();
-//        for (int i = 0; i < tempList.size(); i++) {
-//            for (int j = 0; j < tempList.get(i); j++) {
-//                stamps.add(stampsArray[i]);
-//            }
-//        }
-        List<Integer> stamps2 = new ArrayList<>();
-        for (int i = 0; i < bestCount; i++) {
-            stamps2.add(0);
+        List<Integer> tempList = new ArrayList<>();
+        for (int i = 0; i < bestCounts.length; i++) {
+            if (bestCounts[i] != 0) {
+                tempList.add(bestCounts[i]);
+            }
         }
 
-        return stamps2;
+        List<Integer> stamps = new ArrayList<>();
+        for (int i = 0; i < tempList.size(); i++) {
+            for (int j = 0; j < tempList.get(i); j++) {
+                stamps.add(stampsArray[tempList.get(i)]);
+            }
+        }
+
+        return stamps;
     }
 
     public static void main(String[] args) {
