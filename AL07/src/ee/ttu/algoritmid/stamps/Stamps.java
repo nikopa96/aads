@@ -3,6 +3,8 @@ package ee.ttu.algoritmid.stamps;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Stamps {
 
@@ -37,6 +39,10 @@ public class Stamps {
     public static List<Integer> findStamps(int sum, List<Integer> stampOptions) throws IllegalArgumentException {
         if (stampOptions.isEmpty()) {
             throw new IllegalArgumentException();
+        }
+
+        if (!stampOptions.contains(1)) {
+            stampOptions.add(1);
         }
 
         bestCount = Integer.MAX_VALUE;
