@@ -45,6 +45,10 @@ public class InterestingStamps {
     }
 
     public static List<Integer> findStamps(int sum, List<Integer> stampOptions) throws IllegalArgumentException {
+        if (stampOptions == null) {
+            throw new IllegalArgumentException();
+        }
+
         if (sum != 0) {
             long[] stampsArray = buildArray(sum, stampOptions);
             return chooseStamps(stampsArray);
