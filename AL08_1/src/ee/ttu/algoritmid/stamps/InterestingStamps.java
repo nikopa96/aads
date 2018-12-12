@@ -45,7 +45,7 @@ public class InterestingStamps {
     }
 
     public static List<Integer> findStamps(int sum, List<Integer> stampOptions) throws IllegalArgumentException {
-        if (stampOptions == null) {
+        if (stampOptions == null || stampOptions.isEmpty()) {
             throw new IllegalArgumentException();
         }
 
