@@ -1,6 +1,7 @@
 package ee.ttu.algoritmid.stamps;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class InterestingStamps {
@@ -44,8 +45,11 @@ public class InterestingStamps {
     }
 
     public static List<Integer> findStamps(int sum, List<Integer> stampOptions) throws IllegalArgumentException {
-        long[] stampsArray = buildArray(sum, stampOptions);
-
-        return chooseStamps(stampsArray);
+        if (sum != 0) {
+            long[] stampsArray = buildArray(sum, stampOptions);
+            return chooseStamps(stampsArray);
+        } else {
+            return Collections.emptyList();
+        }
     }
 }
