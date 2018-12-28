@@ -11,9 +11,6 @@ public class HW03 {
 
     public HW03(String fileName) throws IOException, URISyntaxException {
         mazeRunner = new MazeRunner(fileName);
-
-//        MazeExplorer mazeExplorer = new MazeExplorer(mazeRunner);
-//        System.out.println(mazeExplorer.getPath());
     }
 
     public MazeRunner getMazeRunner() {
