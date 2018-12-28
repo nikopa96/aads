@@ -11,6 +11,9 @@ public class HW03 {
 
     public HW03(String fileName) throws IOException, URISyntaxException {
         mazeRunner = new MazeRunner(fileName);
+
+//        MazeExplorer mazeExplorer = new MazeExplorer(mazeRunner);
+//        System.out.println(mazeExplorer.getPath());
     }
 
     public MazeRunner getMazeRunner() {
@@ -26,6 +29,12 @@ public class HW03 {
     public List<String> solve() {
         MazeExplorer mazeExplorer = new MazeExplorer(mazeRunner);
 
-        return mazeExplorer.getPath();
+        List<String> path = mazeExplorer.getPath();
+
+        if (path.isEmpty()) {
+            return null;
+        } else {
+            return path;
+        }
     }
 }
