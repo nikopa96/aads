@@ -8,8 +8,10 @@ import java.util.List;
 
 public class MazeExplorer {
 
-    private MazeRunner mazeRunner;
+    private static final String WALL = "#";
+    private static final String TREASURE = "T";
 
+    private MazeRunner mazeRunner;
     private HashMap<String, String> opposites;
 
     public MazeExplorer(MazeRunner mazeRunner) {
@@ -22,6 +24,13 @@ public class MazeExplorer {
         this.opposites.put("E", "W");
     }
 
+    /**
+     * In this method we use DFS algorithm to find path from start to finish cell
+     * @param maze maze
+     * @param visited all visited cells represented as coordinates
+     * @param visitedDirections all visited cells as directions N, S, W, E
+     * @param path path from start to finish as directions N, S, W, E
+     */
     private void visit(String[][] maze, List<Cell> visited, List<String> visitedDirections, List<String> path) {
         int x = mazeRunner.getPosition().getKey();
         int y = mazeRunner.getPosition().getValue();
@@ -33,29 +42,34 @@ public class MazeExplorer {
             maze[y][x] = cost;
             visited.add(current);
 
-            if (maze[y][x].equals("T")) {
+            if (maze[y][x].equals(TREASURE)) {
                 path.addAll(visitedDirections);
             }
 
-            if (!mazeRunner.scanAsString().get(1).get(0).equals("#") && maze[y - 1][x] == null) {
+            String north = mazeRunner.scanAsString().get(1).get(0);
+            String east = mazeRunner.scanAsString().get(2).get(1);
+            String south = mazeRunner.scanAsString().get(1).get(2);
+            String west = mazeRunner.scanAsString().get(0).get(1);
+
+            if (!north.equals(WALL) && maze[y - 1][x] == null) {
                 mazeRunner.move("N");
                 visitedDirections.add("N");
                 visit(maze, visited, visitedDirections, path);
             }
 
-            if (!mazeRunner.scanAsString().get(2).get(1).equals("#") && maze[y][x + 1] == null) {
+            if (!east.equals(WALL) && maze[y][x + 1] == null) {
                 mazeRunner.move("E");
                 visitedDirections.add("E");
                 visit(maze, visited, visitedDirections, path);
             }
 
-            if (!mazeRunner.scanAsString().get(1).get(2).equals("#") && maze[y + 1][x] == null) {
+            if (!south.equals(WALL) && maze[y + 1][x] == null) {
                 mazeRunner.move("S");
                 visitedDirections.add("S");
                 visit(maze, visited, visitedDirections, path);
             }
 
-            if (!mazeRunner.scanAsString().get(0).get(1).equals("#") && maze[y][x - 1] == null) {
+            if (!west.equals(WALL) && maze[y][x - 1] == null) {
                 mazeRunner.move("W");
                 visitedDirections.add("W");
                 visit(maze, visited, visitedDirections, path);
